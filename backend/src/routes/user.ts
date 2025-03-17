@@ -1,6 +1,7 @@
 import { Router } from "express";
 import jwt from "jsonwebtoken";
-import { JWT_SECREAT } from "../config";
+import dotenv from "dotenv";
+dotenv.config();
 import { UserModel } from "../models/userModel"
 
 const userRoute = Router();
@@ -30,7 +31,7 @@ userRoute.post("/signin", async(req,res) => {
     const password = req.body.password;
     const user = await UserModel.findOne({username,password});
     if(user){
-        const token = jwt.sign({id : user._id},JWT_SECREAT);
+        const token = jwt.sign({id : user._id},process.env.JWT_SECREAT as string);
 
         res.json({
             token : token
