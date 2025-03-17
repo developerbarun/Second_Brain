@@ -23,7 +23,7 @@ app.use("/api/v1/brain",shareRoute);
 
 async function call(){
     await mongoose.connect(process.env.MONGODB_URI as string);
-    app.listen(3000, () => {
+    app.listen(process.env.PORT, () => {
         console.log("Connected");
         
     })
