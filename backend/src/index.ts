@@ -14,6 +14,9 @@ const { userRoute } = require("./routes/user");
 
 app.use(express.json());
 
+app.get("/",(req,res) => {
+    res.send("Hello");
+})
 app.use("/api/v1/user",userRoute);
 app.use("/api/v1/content", userMiddleware, contentRoute);
 app.use("/api/v1/brain",shareRoute);
