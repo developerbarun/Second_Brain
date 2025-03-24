@@ -6,6 +6,8 @@ interface ButtonProps{
     text : string,
     startIcon ?: ReactElement,
     endIcon ?: any,
+    fullWidth ?: boolean, 
+    loading ?: boolean, 
     onClick ?: () => void,
 }
 
@@ -25,13 +27,11 @@ const defaultStyles = "rounded-md font-light";
 export const Button = (props : ButtonProps) => {
   return (
     <button 
-      className={`flex items-center gap-2  ${buttonVarient[props.varient]} ${defaultStyles} ${sizeStyle[props.size]}`}
+      className={`flex items-center gap-2  ${buttonVarient[props.varient]} ${defaultStyles} ${sizeStyle[props.size]}${props.fullWidth ? " w-full flex justify-center items-center" : ""} ${props.loading ? "opacity-45" : ""}`} disabled={props.loading}
       onClick={props.onClick}
     >
       {props.startIcon && <span>{props.startIcon}</span>}
       {props.text}
-      {/* {props.endIcon && <span>{props.endIcon}</span>}
-      {props.endIcon} */}
     </button>
   )
 }

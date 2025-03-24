@@ -3,13 +3,15 @@ import mongoose from "mongoose";
 const { userMiddleware } = require("./middleware/auth");
 const { contentRoute } = require("./routes/content");
 const { shareRoute } = require("./routes/share");
+import cors from "cors";
 
 import dotenv from "dotenv";
 dotenv.config();
-
-
 const app = express();
 const { userRoute } = require("./routes/user");
+
+
+app.use(cors())
 
 
 app.use(express.json());
