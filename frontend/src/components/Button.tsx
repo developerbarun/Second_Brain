@@ -6,12 +6,12 @@ interface ButtonProps{
     text : string,
     startIcon ?: ReactElement,
     endIcon ?: any,
-    onClick : () => void,
+    onClick ?: () => void,
 }
 
 const buttonVarient = {
     "primary" : "bg-purple-600 text-white hover:bg-purple-500",
-    "secondary" : "bg-purple-300 text-purple-600 hover:bg-blue-50",
+    "secondary" : "bg-purple-200 text-purple-600 hover:bg-blue-50",
 }
 
 const sizeStyle = {
@@ -20,7 +20,7 @@ const sizeStyle = {
     "lg" : "py-3 px-6 text-lg"
 }
 
-const defaultStyles = "rounded-md ";
+const defaultStyles = "rounded-md font-light";
 
 export const Button = (props : ButtonProps) => {
   return (
@@ -30,8 +30,8 @@ export const Button = (props : ButtonProps) => {
     >
       {props.startIcon && <span>{props.startIcon}</span>}
       {props.text}
-      {props.endIcon && <span>{props.endIcon}</span>}
-      {/* {props.endIcon} */}
+      {/* {props.endIcon && <span>{props.endIcon}</span>}
+      {props.endIcon} */}
     </button>
   )
 }
