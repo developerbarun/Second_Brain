@@ -1,8 +1,12 @@
-import { Router } from "express";
+import { Router,Response,Request } from "express";
 const contentRoute = Router();
 const { contentModel } = require("../models/contentModel");
 
-contentRoute.post("/", async(req,res) => {
+interface AuthRequest extends Request{
+    userId ?: string;
+} 
+
+contentRoute.post("/", async(req : AuthRequest,res : Response) => {
     const title = req.body.title;
     const link = req.body.link;
     const type = req.body.type;
@@ -11,7 +15,6 @@ contentRoute.post("/", async(req,res) => {
         title,
         link,
         type,
-        //@ts-ignore
         userId : req.userId,
         tags : []
     })
@@ -26,8 +29,7 @@ contentRoute.post("/", async(req,res) => {
 
 })
 
-contentRoute.get("/", async(req,res) => {
-    //@ts-ignore
+contentRoute.get("/", async(req:AuthRequest,res : Response) => {
     const userId = req.userId;
     const content = await contentModel.find({userId}).populate("userId","username");
     res.json({
@@ -36,12 +38,11 @@ contentRoute.get("/", async(req,res) => {
 })
 
 
-contentRoute.delete("/",async(req,res) => {
+contentRoute.delete("/",async(req:AuthRequest,res : Response) => {
     const contenetId = req.body.contenetId;
     try{
     await contentModel.deleteMany({
         contenetId,
-        //@ts-ignore
         userId : req.userId
     });
 

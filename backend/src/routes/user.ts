@@ -42,8 +42,4 @@ userRoute.post("/signin", async(req,res) => {
         })
     }
 })
-
-
 module.exports  = {userRoute};
-
-

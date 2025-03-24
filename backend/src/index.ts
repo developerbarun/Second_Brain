@@ -17,6 +17,8 @@ app.use(express.json());
 app.get("/",(req,res) => {
     res.send("Hello");
 })
+
+
 app.use("/api/v1/user",userRoute);
 app.use("/api/v1/content", userMiddleware, contentRoute);
 app.use("/api/v1/brain",shareRoute);
@@ -24,7 +26,7 @@ app.use("/api/v1/brain",shareRoute);
 async function call(){
     await mongoose.connect(process.env.MONGODB_URI as string);
     app.listen(process.env.PORT, () => {
-        console.log("Connected");
+        console.log(`Connected ${process.env.PORT}`);
         
     })
 } 
