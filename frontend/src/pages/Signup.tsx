@@ -10,12 +10,12 @@ export const Signup = () => {
     const nameRef = useRef<HTMLInputElement>(null);
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
+    const navigate = useNavigate();
 
     async function signup(){
         const name = nameRef.current?.value;
         const username = usernameRef.current?.value;
         const password = passwordRef.current?.value;
-        const navigate = useNavigate();
         await axios.post(import.meta.env.VITE_BACKEND_URL + "/api/v1/user/signup",{
             name,
             username,

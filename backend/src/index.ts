@@ -22,7 +22,7 @@ app.get("/",(req,res) => {
 
 
 app.use("/api/v1/user",userRoute);
-app.use("/api/v1/content", userMiddleware, contentRoute);
+app.use("/api/v1/content", contentRoute);
 app.use("/api/v1/brain",shareRoute);
 
 async function call(){

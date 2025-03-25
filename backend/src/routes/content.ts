@@ -1,4 +1,5 @@
 import { Router,Response,Request } from "express";
+import { userMiddleware } from "../middleware/auth";
 const contentRoute = Router();
 const { contentModel } = require("../models/contentModel");
 
@@ -6,7 +7,7 @@ interface AuthRequest extends Request{
     userId ?: string;
 } 
 
-contentRoute.post("/", async(req : AuthRequest,res : Response) => {
+contentRoute.post("/", userMiddleware, async(req : AuthRequest,res : Response) => {
     const title = req.body.title;
     const link = req.body.link;
     const type = req.body.type;
@@ -29,7 +30,7 @@ contentRoute.post("/", async(req : AuthRequest,res : Response) => {
 
 })
 
-contentRoute.get("/", async(req:AuthRequest,res : Response) => {
+contentRoute.get("/",userMiddleware, async(req:AuthRequest,res : Response) => {
     const userId = req.userId;
     const content = await contentModel.find({userId}).populate("userId","username");
     res.json({
@@ -38,7 +39,7 @@ contentRoute.get("/", async(req:AuthRequest,res : Response) => {
 })
 
 
-contentRoute.delete("/",async(req:AuthRequest,res : Response) => {
+contentRoute.delete("/",userMiddleware,async(req:AuthRequest,res : Response) => {
     const contenetId = req.body.contenetId;
     try{
     await contentModel.deleteMany({
