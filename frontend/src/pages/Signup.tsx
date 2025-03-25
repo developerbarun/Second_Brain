@@ -31,7 +31,8 @@ export const Signup = () => {
             <Input reference = {usernameRef}  placeholder="Username"/>
             <Input reference = {passwordRef}  placeholder="Password"/>
             <div>
-                <Button loading = {false} varient="primary" text="Signup" fullWidth={true} size="md" onClick={signup}/>              
+                <Button loading = {false} varient="primary" text="Signup" fullWidth={true} size="md" onClick={signup}/>    
+
             </div> 
         </div>
     </div>

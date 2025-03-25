@@ -24,7 +24,7 @@ contentRoute.post("/", userMiddleware, async(req : AuthRequest,res : Response) =
         message : "Content added"
     })}catch(e){
         res.json({
-            errr : e 
+            error : e 
         })
     }
 
