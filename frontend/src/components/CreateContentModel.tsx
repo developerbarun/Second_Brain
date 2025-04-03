@@ -33,8 +33,8 @@ export const CreateContentModel = ({ open, onClose = () => {} }: any) => {
 
       onClose();
     } catch (error) {
-      console.error("Failed to add content:", error);
-      alert("Failed to add content. Please try again.");
+    //   console.error("Failed to add content:", error);
+      alert("Failed to add content. Please try again." + error);
     }
   }
 
