@@ -11,24 +11,24 @@ const app = express();
 const { userRoute } = require("./routes/user");
 
 
-// app.use(cors())
+app.use(cors())
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173", // local dev
-      "https://second-brain-oajy-j8knqt3sa.vercel.app", // production
-      "https://second-brain-theta-rose.vercel.app" // production
-      
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: [
+//       "http://localhost:5173", // local dev
+//       "https://second-brain-oajy-j8knqt3sa.vercel.app", // production
+//       "https://second-brain-theta-rose.vercel.app" // production
 
-// Handle preflight OPTIONS requests too
-app.options("*", cors());
+//     ],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//     credentials: true,
+//   })
+// );
+
+// // Handle preflight OPTIONS requests too
+// app.options("*", cors());
 
 
 app.use(express.json());
