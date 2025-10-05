@@ -17,7 +17,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173", // local dev
-      "https://second-brain-oajy-j8knqt3sa.vercel.app/", // your deployed frontend (adjust name if different)
+      "https://second-brain-oajy-j8knqt3sa.vercel.app", // your deployed frontend (adjust name if different)
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
