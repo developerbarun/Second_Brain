@@ -31,7 +31,7 @@ shareRoute.post("/share",userMiddleware,async(req : AuthRequest,res : Response) 
         })
         
         res.json({
-            hashLink
+            hash : hashLink
         })
     }else{
         await LinkModel.deleteOne({
