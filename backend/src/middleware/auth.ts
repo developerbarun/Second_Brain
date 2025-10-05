@@ -15,6 +15,8 @@ export const userMiddleware = (
 ): void => {
   const authHeader = req.headers["authorization"];
 
+    console.log("AUTH HEADER:", req.headers["authorization"]);
+
   if (!authHeader) {
     res.status(401).json({ message: "No token provided" });
     return;
