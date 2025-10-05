@@ -38,7 +38,7 @@ userRoute.post("/signin", async(req,res) => {
         })
     }else{
         res.status(403).json({
-            message : "Incorrect Crediits"
+            message : "Incorrect Credentials"
         })
     }
 })

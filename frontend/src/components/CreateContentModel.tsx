@@ -26,7 +26,7 @@ export const CreateContentModel = ({ open, onClose = () => {} }: any) => {
         { title, link, type },
         {
           headers: {
-            Authorization: localStorage.getItem("token"),
+            Authorization : localStorage.getItem("token"),
           },
         }
       );
