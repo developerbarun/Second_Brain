@@ -7,7 +7,7 @@ export const useContent = () => {
     function refresh(){
         axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/content`,{
             headers:{
-                "Authorization" : localStorage.getItem("token")
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
             }
         })
         .then((response) => {
