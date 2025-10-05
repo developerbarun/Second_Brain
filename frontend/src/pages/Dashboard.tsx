@@ -33,7 +33,8 @@ function Dashboard() {
             "Authorization" : localStorage.getItem("token")
           }
         });
-        const shareUrl =`http://localhost:5173/api/v1/brain/${response.data.hash}`;
+        // const shareUrl =`http://localhost:5173/api/v1/brain/${response.data.hash}`;
+        const shareUrl = `${window.location.origin}/brain/${response.data.hash}`;
         alert(shareUrl)
         }} varient="secondary" size="md" text="Share" startIcon={<ShareIcon size = "md"/>}/>
       </div>
