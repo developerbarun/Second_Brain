@@ -4,8 +4,8 @@ function Home() {
     Hello This is my project 
 
     GO TO : 
-    <a href="signup"> Singup</a>
-
+    <a href="signup"> Singup </a>
+    <br/>
 
     If Already have an account
     <a href="signin"> Signin</a>
