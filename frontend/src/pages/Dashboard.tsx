@@ -30,8 +30,7 @@ function Dashboard() {
           share : true
         },{
           headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: localStorage.getItem("token"),
           },
         });
         // const shareUrl =`http://localhost:5173/api/v1/brain/${response.data.hash}`;
