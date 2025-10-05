@@ -26,6 +26,7 @@ export const CreateContentModel = ({ open, onClose = () => {} }: any) => {
         { title, link, type },
         {
           headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }

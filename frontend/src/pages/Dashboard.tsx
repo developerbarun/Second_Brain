@@ -29,9 +29,10 @@ function Dashboard() {
         <Button onClick={async() => {const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/brain/share`,{
           share : true
         },{
-          headers : {
-            "Authorization" : `Bearer ${localStorage.getItem("token")}`
-          }
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         });
         // const shareUrl =`http://localhost:5173/api/v1/brain/${response.data.hash}`;
         const shareUrl = `${window.location.origin}/brain/${response.data.hash}`;
