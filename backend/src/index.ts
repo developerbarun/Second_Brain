@@ -11,8 +11,19 @@ const app = express();
 const { userRoute } = require("./routes/user");
 
 
-app.use(cors())
+// app.use(cors())
 
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // local dev
+      "https://second-brain.vercel.app", // your deployed frontend (adjust name if different)
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
 
 app.use(express.json());
