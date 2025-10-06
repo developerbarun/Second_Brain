@@ -3,6 +3,7 @@ import { UserModel } from "../models/userModel";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { z } from "zod";
+import { userMiddleware } from "../middleware/auth";
 
 export const userRoute = express.Router();
 
@@ -87,5 +88,27 @@ if (!isPasswordValid) {
     }
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
+userRoute.get("/me", userMiddleware, async (req: Request, res: Response) => {
+  try {
+    const userId = (req as any).userId; // since you added userId in middleware
+
+    const user = await UserModel.findById(userId).select("name username");
+    if (!user) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+
+    res.status(200).json({ 
+      name: user.name, 
+      username: user.username 
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
