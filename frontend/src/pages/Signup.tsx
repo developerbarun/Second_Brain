@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const Signup = () => {
   const nameRef = useRef<HTMLInputElement>(null);
@@ -33,9 +34,19 @@ export const Signup = () => {
 
       navigate("/dashboard");
     } catch (err: any) {
-      console.error(err);
-      alert(err.response?.data?.error || "Signup failed. Try again.");
-    }
+  console.error(err);
+
+  const errorData = err.response?.data?.error;
+
+  if (Array.isArray(errorData) && errorData[0]?.message) {
+    toast.error(errorData[0].message);
+  } else if (typeof errorData === "string") {
+    toast.error(errorData);
+  } else {
+    toast.error("Signup failed ❌");
+  }
+}
+
   }
 
   return (
@@ -87,48 +98,3 @@ export const Signup = () => {
     </div>
   );
 };
-
-
-
-
-
-
-// import { useRef } from "react"
-// import { Button } from "../components/Button"
-// import { Input } from "../components/Input"
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-
-
-
-// export const Signup = () => {
-//     const nameRef = useRef<HTMLInputElement>(null);
-//     const usernameRef = useRef<HTMLInputElement>(null);
-//     const passwordRef = useRef<HTMLInputElement>(null);
-//     const navigate = useNavigate();
-
-//     async function signup(){
-//         const name = nameRef.current?.value;
-//         const username = usernameRef.current?.value;
-//         const password = passwordRef.current?.value;
-//         await axios.post(import.meta.env.VITE_BACKEND_URL + "/api/v1/user/signup",{
-//             name,
-//             username,
-//             password
-//         })
-//         navigate("/dashboard")
-//         alert("You have signedup")
-//     }
-
-//     return <div className="h-screen w-screen bg-gray-200 flex justify-center items-center">
-//         <div className="bg-white rounded-xl border min-w-48 p-8">
-//             <Input reference={nameRef} placeholder="Name"/>
-//             <Input reference = {usernameRef}  placeholder="Username"/>
-//             <Input reference = {passwordRef}  placeholder="Password"/>
-//             <div>
-//                 <Button loading = {false} varient="primary" text="Signup" fullWidth={true} size="md" onClick={signup}/>    
-
-//             </div> 
-//         </div>
-//     </div>
-// }

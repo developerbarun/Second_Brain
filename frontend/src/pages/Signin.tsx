@@ -1,8 +1,7 @@
 import { useRef, useEffect } from "react";
-// import { Button } from "../components/Button";
-// import { Input } from "../components/Input";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const Signin = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -25,9 +24,20 @@ export const Signin = () => {
       );
       localStorage.setItem("token", response.data.token);
       navigate("/dashboard");
-    } catch {
-      alert("Invalid username or password");
-    }
+    } catch (err: any) {
+  console.error(err);
+
+  const errorData = err.response?.data?.error;
+
+  if (Array.isArray(errorData) && errorData[0]?.message) {
+    toast.error(errorData[0].message);
+  } else if (typeof errorData === "string") {
+    toast.error(errorData);
+  } else {
+    toast.error("Invalid username or password 😕");
+  }
+}
+
   }
 
   return (
@@ -73,102 +83,3 @@ export const Signin = () => {
     </div>
   );
 };
-
-
-
-// import { useRef, useEffect } from "react";
-// import { Button } from "../components/Button";
-// import { Input } from "../components/Input";
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-
-// export const Signin = () => {
-//   const usernameRef = useRef<HTMLInputElement>(null);
-//   const passwordRef = useRef<HTMLInputElement>(null);
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     const token = localStorage.getItem("token");
-//     if (token) {
-//       navigate("/dashboard");
-//     }
-//   }, [navigate]);
-
-//   async function signin() {
-//     const username = usernameRef.current?.value;
-//     const password = passwordRef.current?.value;
-
-//     try {
-//       const response = await axios.post(
-//         import.meta.env.VITE_BACKEND_URL + "/api/v1/user/signin",
-//         { username, password }
-//       );
-
-//       const jwt = response.data.token;
-//       localStorage.setItem("token", jwt);
-
-//       navigate("/dashboard");
-//     } catch (error) {
-//       alert("Invalid username or password");
-//     }
-//   }
-
-//   return (
-//     <div className="h-screen w-screen bg-gray-200 flex justify-center items-center">
-//       <div className="bg-white rounded-xl border min-w-48 p-8">
-//         <Input reference={usernameRef} placeholder="Username" />
-//         <Input reference={passwordRef} placeholder="Password" />
-//         <div>
-//           <Button
-//             loading={false}
-//             varient="primary"
-//             text="Signin"
-//             fullWidth={true}
-//             size="md"
-//             onClick={signin}
-//           />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-
-
-
-
-// // import { useRef } from "react";
-// // import { Button } from "../components/Button"
-// // import { Input } from "../components/Input"
-// // import axios from "axios";
-// // import { useNavigate } from "react-router-dom";
-
-// // export const Signin = () => {
-
-// //     const usernameRef = useRef<HTMLInputElement>(null);
-// //     const passwordRef = useRef<HTMLInputElement>(null);
-
-// //     const navigate = useNavigate();
-
-// //     async function signin(){
-// //         const username = usernameRef.current?.value;
-// //         const password = passwordRef.current?.value;
-// //         const response = await axios.post(import.meta.env.VITE_BACKEND_URL + "/api/v1/user/signin",{
-// //             username,
-// //             password
-// //         })
-// //         const jwt = response.data.token;
-// //         localStorage.setItem("token",jwt);
-// //         navigate("/dashboard")
-// //     }
-
-// //     return <div className="h-screen w-screen bg-gray-200 flex justify-center items-center">
-// //         <div className="bg-white rounded-xl border min-w-48 p-8">
-// //             <Input reference={usernameRef} placeholder="username"/>
-// //             <Input reference={passwordRef}  placeholder="password"/>
-// //             <div>
-// //                 <Button loading = {false} varient="primary" text="Signin" fullWidth={true} size="md" onClick={signin}/>
-// //             </div>
-// //         </div>
-// //     </div>
-// // }

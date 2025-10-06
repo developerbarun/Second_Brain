@@ -7,6 +7,7 @@ import { Card } from "../components/Card";
 import { ShareIcon } from "../icons/ShareIcon";
 import { useContent } from "../hooks/useContent";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 
 function Dashboard() {
@@ -35,7 +36,7 @@ function Dashboard() {
         });
         // const shareUrl =`http://localhost:5173/api/v1/brain/${response.data.hash}`;
         const shareUrl = `${window.location.origin}/brain/${response.data.hash}`;
-        alert(shareUrl)
+        toast.success(shareUrl)
         }} varient="secondary" size="md" text="Share" startIcon={<ShareIcon size = "md"/>}/>
       </div>
       <div className="flex gap-4 flex-wrap">
