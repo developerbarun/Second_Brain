@@ -32,6 +32,8 @@ export const Signup = () => {
 
       localStorage.setItem("token", signinResponse.data.token);
 
+      localStorage.setItem("username", signinResponse.data.username);
+
       navigate("/dashboard");
     } catch (err: any) {
   console.error(err);

@@ -3,7 +3,6 @@ import { CrossIcon } from "../icons/CrossIcon";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import axios from "axios";
-import toast from "react-hot-toast";
 
 enum ContentType {
   Image = "image",
@@ -35,7 +34,7 @@ export const CreateContentModel = ({ open, onClose = () => {} }: any) => {
       onClose();
     } catch (error) {
     //   console.error("Failed to add content:", error);
-      toast.success("Failed to add content. Please try again." + error);
+      alert("Failed to add content. Please try again." + error);
     }
   }
 

@@ -23,6 +23,7 @@ export const Signin = () => {
         { username, password }
       );
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("username", response.data.username);
       navigate("/dashboard");
     } catch (err: any) {
   console.error(err);

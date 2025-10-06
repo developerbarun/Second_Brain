@@ -95,7 +95,7 @@ if (!isPasswordValid) {
 
 userRoute.get("/me", userMiddleware, async (req: Request, res: Response) => {
   try {
-    const userId = (req as any).userId; // since you added userId in middleware
+    const userId = (req as any).userId; 
 
     const user = await UserModel.findById(userId).select("name username");
     if (!user) {
