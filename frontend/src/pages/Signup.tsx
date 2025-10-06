@@ -19,22 +19,18 @@ export const Signup = () => {
     const password = passwordRef.current?.value;
 
     try {
-      // ✅ Create user
-      const signupResponse = await axios.post(
+       await axios.post(
         import.meta.env.VITE_BACKEND_URL + "/api/v1/user/signup",
         { name, username, password }
       );
 
-      // ✅ Automatically sign in after signup
       const signinResponse = await axios.post(
         import.meta.env.VITE_BACKEND_URL + "/api/v1/user/signin",
         { username, password }
       );
 
-      // ✅ Save JWT token
       localStorage.setItem("token", signinResponse.data.token);
 
-      // ✅ Redirect to dashboard
       navigate("/dashboard");
     } catch (err: any) {
       console.error(err);
