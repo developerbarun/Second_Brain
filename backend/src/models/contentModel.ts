@@ -3,7 +3,7 @@ const userModel = require("./userModel");
 
 const ObjectId = mongoose.Types.ObjectId;
 
-const contentTypes = ['image', 'video', 'article', 'audio','text'];
+const contentTypes = ['image', 'video', 'article', 'audio'];
 
 const contentSchema = new Schema({
     title : String,
