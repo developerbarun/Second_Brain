@@ -42,8 +42,6 @@ app.use("/api/v1/user",userRoute);
 app.use("/api/v1/content", contentRoute);
 app.use("/api/v1/brain",shareRoute);
 
-
-
 async function call(){
     await mongoose.connect(process.env.MONGODB_URI as string);
     app.listen(process.env.PORT, () => {

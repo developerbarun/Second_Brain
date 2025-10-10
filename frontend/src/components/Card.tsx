@@ -101,7 +101,7 @@ export function Card({ title, link, type }: CardProps) {
           />
         )}
 
-        {type === "audio" && title}
+        {type === "audio" && link}
 
       </div>
     </div>
