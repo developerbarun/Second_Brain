@@ -1,4 +1,16 @@
-config.ts
-dist
-node_modules
+# Maven build output
+target/
+
+# IDE files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+*.class
+
+# Environment / secrets
 .env
+
+# macOS
+.DS_Store
